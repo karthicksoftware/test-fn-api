@@ -9,6 +9,8 @@
 		<json-server>
 			<getUser method="GET">/karthicksoftware/test-fn-api/posts?author=${userName}</getUser>
 			<getCommentsByPost method="GET">/karthicksoftware/test-fn-api/posts/${postId}/comments</getCommentsByPost>
+			<addCommentToPost method="POST">/karthicksoftware/test-fn-api/posts/${postId}/comments</addCommentToPost>
+			<getAllPosts method="GET">/karthicksoftware/test-fn-api/posts</getAllPosts>
 		</json-server>
 	</routes>
 </definition>

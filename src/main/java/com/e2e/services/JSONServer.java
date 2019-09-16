@@ -28,16 +28,17 @@ public class JSONServer extends RequestComponents {
 		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, null, null);
 	}
 
-	public Response addNewComment(int id, String body, int postId, String email) throws Exception {
+	public Response addNewComment(String body, int postId, String email) throws Exception {
 		Map<String, String> substitutes = new HashMap<String, String>();
-		substitutes.put("id", String.valueOf(id));
 		substitutes.put("body", body);
 		substitutes.put("postId", String.valueOf(postId));
 		substitutes.put("email", email);
-		String serviceUrl = getServiceURL(RouteList.ADD_COMMENT);
+		HashMap<String, Object> headers = new HashMap<String, Object>();
+		headers.put("Accept", "application/json");
+		String serviceUrl = StringSubstitutor(getServiceURL(RouteList.ADD_COMMENT), substitutes);
 		String payload = StringSubstitutor(getRequestBody(PayloadList.ADD_COMMENT), substitutes);
 		HTTPMethod method = getHttpMethod(RouteList.ADD_COMMENT);
-		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, null, payload);
+		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, headers, payload);
 	}
 	
 	public Response getCommentsByPost(int postId) throws Exception {
@@ -48,4 +49,9 @@ public class JSONServer extends RequestComponents {
 		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, null, null);
 	}
 
+	public Response getAllPosts() throws Exception {
+		String serviceUrl = getServiceURL(RouteList.GET_ALL_POSTS);
+		HTTPMethod method = getHttpMethod(RouteList.GET_ALL_POSTS);
+		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, null, null);
+	}
 }

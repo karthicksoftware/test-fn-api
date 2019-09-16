@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.e2e.constants.HTTPMethod;
 import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.config.EncoderConfig;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 
@@ -88,7 +89,9 @@ public class HTTPRequestImpl implements HTTPRequestFacade{
 	}
 	
 	private RequestSpecification constructRequestSpecification(HTTPMethod method, String requestUrl, String contentType, HashMap<String, Object> header, String jsonBody, HashMap<String, Object> cookies) throws Exception {
-		RequestSpecification request = RestAssured.given();
+		EncoderConfig encoderconfig = new EncoderConfig();
+		RequestSpecification request = RestAssured.given().config(RestAssured.config()
+                .encoderConfig(encoderconfig.appendDefaultContentCharsetToContentTypeIfUndefined(false)));
 		if(contentType != null)
 			request = request.contentType(contentType);
 		if(cookies != null && !cookies.isEmpty())

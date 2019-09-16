@@ -1,6 +1,7 @@
 package com.e2e.commonutils;
 
-import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Map;
 import javax.naming.OperationNotSupportedException;
 import javax.xml.parsers.DocumentBuilder;
@@ -12,7 +13,6 @@ import javax.xml.xpath.XPathFactory;
 import org.apache.commons.lang3.text.StrSubstitutor;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
-
 import com.e2e.constants.Constants;
 import com.e2e.constants.HTTPMethod;
 
@@ -48,7 +48,7 @@ public abstract class RequestComponents {
 		else if (methodName.equalsIgnoreCase("delete"))
 			return HTTPMethod.DELETE;
 		else
-			throw new OperationNotSupportedException("Method not supported : "+methodName);
+			throw new OperationNotSupportedException("Method not supported : " + methodName);
 	}
 
 	protected String StringSubstitutor(String templateString, Map<String, String> textToBeReplaced) throws Exception {
@@ -58,9 +58,12 @@ public abstract class RequestComponents {
 	}
 
 	protected String getRequestBody(String payloadPath) throws Exception {
-		FileReader reader = new FileReader(payloadPath);
-		String payload = reader.toString();
-		reader.close();
-		return payload;
+		return readFileAsString(payloadPath);
+	}
+
+	public static String readFileAsString(String fileName) throws Exception {
+		String data = "";
+		data = new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir") + fileName)));
+		return data;
 	}
 }

@@ -12,5 +12,21 @@ public class TestScenarios extends TestSetup {
 		helper.validateEmailFormatInCommentsSection(posts);
 	}
 	
+	@Test
+	public void checkUnavailableUserReturnsEmptyPosts() throws Exception {
+		helper.checkUnavailableUserReturnsEmptyPosts("unavailabe-User");
+	}
+	
+	@Test
+	public void validateIfRespectiveCommentsRetrievesAsPerPostId() throws Exception {
+		Response posts = helper.getPostsByUser("Samantha");
+		helper.validateRespectiveCommentsByPostId(posts);
+	}
+	
+	@Test
+	public void checkIfUserAbleToCommentToPost() throws Exception {
+		Response allPosts = helper.getAllPosts();
+		helper.addCommentToAnyPost(allPosts);
+	}
 }
  
