@@ -1,0 +1,39 @@
+{
+  "posts": [
+    { "id": 1, "title": "The Jarvis", "author": "stark"},
+    { "id": 2, "title": "The Captain", "author": "steve"},
+    { "id": 3, "title": "Power and Destruction", "author": "bruce"},
+    { "id": 4, "title": "Fighter", "author": "natasha"},
+    { "id": 5, "title": "Fire and Love", "author": "hawk"},
+    { "id": 6, "title": "Junior Knight", "author": "robin"},
+    { "id": 7, "title": "Dark Knight", "author": "batman"},
+    { "id": 8, "title": "Women Empowerment", "author": "samantha"},
+    { "id": 9, "title": "Social Activities", "author": "samantha"},
+    { "id": 10, "title": "Clean City", "author": "samantha"},
+    { "id": 11, "title": "Harmless environment", "author": "samantha"},
+    { "id": 12, "title": "Mastering management", "author": "karthick"},
+    { "id": 13, "title": "Love and Thunder", "author": "thor"},
+    { "id": 14, "title": "Powerful Mutant", "author": "wolvorine"},
+    { "id": 15, "title": "The Inevitable Man", "author": "thanos"}
+  ],
+  "comments": [
+    { "id": 1, "body": "Comment 1", "postId": 1, "email": "asasdas@gmail.com"  },
+    { "id": 2, "body": "Comment 2", "postId": 2, "email": "asd234adad@gmail.com"  },
+    { "id": 3, "body": "Comment 3", "postId": 3, "email": "vdfww23ds@gmail.com"  },
+    { "id": 4, "body": "Comment 4", "postId": 4, "email": "dsdf432@gmail.com"  },
+    { "id": 5, "body": "Comment 5", "postId": 5, "email": "g2f52c@gmail.com"  },
+    { "id": 6, "body": "Comment 6", "postId": 6, "email": "re2r5@gmail.com"  },
+    { "id": 7, "body": "Comment 7", "postId": 7, "email": "gf5fd2@gmail.com"  },
+    { "id": 8, "body": "Comment 8", "postId": 8, "email": "4s1fd4@gmail.com"  },
+    { "id": 9, "body": "Comment 9", "postId": 8, "email": "8fd-f1df4@gmail.com"  },
+    { "id": 10, "body": "Comment 10", "postId": 8, "email": "dsf4df41@gmail.com"  },
+    { "id": 11, "body": "Comment 11", "postId": 8, "email": "esf4dsd@gmail.com"  },
+    { "id": 12, "body": "Comment 12", "postId": 8, "email": "xsf4231@gmail.com"  },
+    { "id": 13, "body": "Comment 13", "postId": 9, "email": "csf4er41@gmail.com"  },
+    { "id": 14, "body": "Comment 14", "postId": 10, "email": "hsf4d2241@gmail.com"  },
+    { "id": 15, "body": "Comment 15", "postId": 12, "email": "invalidemail"  }
+  ],
+  "profile": {
+    "name": "Karthick"
+  }
+}
