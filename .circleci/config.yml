@@ -2,8 +2,11 @@ version: 2
 jobs: 
   build: 
     working_directory: ~/test-fn-api 
-    docker: 
-      - image: circleci/openjdk:8u131-jdk 
+    #docker: 
+     # - image: circleci/openjdk:8u131-jdk 
+    machine:
+    java:
+        version: 'oraclejdk8'
     steps: 
       - checkout 
       - restore_cache: 
