@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition>
+	<environment>
+		<name>Prod</name>
+		<host>my-json-server.typicode.com</host>
+		<protocol>https</protocol>
+	</environment>
+	<routes>
+		<json-server>
+			<getUser method="GET">/karthicksoftware/test-fn-api/posts?author=${userName}</getUser>
+			<getCommentsByPost method="GET">/karthicksoftware/test-fn-api/posts/${postId}/comments</getCommentsByPost>
+		</json-server>
+	</routes>
+</definition>

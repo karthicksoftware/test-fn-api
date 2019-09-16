@@ -1,0 +1,8 @@
+[
+  {
+    "id": ${id},
+    "body": "${body}",
+    "postId": ${postId},
+    "email": "${email}"
+  }
+]

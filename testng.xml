@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="methods" thread-count="1">
+	<test name="Blog Page Test Scenarios">
+		<classes>
+			<class name="com.e2e.tests.TestScenarios" />
+		</classes>
+	</test>
+</suite>
