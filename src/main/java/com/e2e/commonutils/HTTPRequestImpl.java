@@ -2,15 +2,18 @@ package com.e2e.commonutils;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.log4j.Logger;
-
 import com.e2e.constants.HTTPMethod;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.config.EncoderConfig;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 
+/**
+ * This implements HTTPRequestFacade and contains essential core libraries of restassured framework
+ * @author Karthick Arunachalam
+ *
+ */
 public class HTTPRequestImpl implements HTTPRequestFacade{
 	
 	final static Logger log = Logger.getLogger(HTTPRequestImpl.class);

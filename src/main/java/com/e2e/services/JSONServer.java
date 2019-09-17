@@ -12,6 +12,12 @@ import com.e2e.constants.PayloadList;
 import com.e2e.constants.RouteList;
 import com.jayway.restassured.response.Response;
 
+/**
+ * Any services should be specified with a separate class like this and call to core request libraries 
+ * should goes from here. This class contains all the request implementations for JSON Server.
+ * @author Karthick Arunachalam
+ *
+ */
 public class JSONServer extends RequestComponents {
 	
 	HTTPRequestFacade request;

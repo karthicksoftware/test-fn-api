@@ -3,9 +3,13 @@ package com.e2e.tests;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
 import com.e2e.helpers.TestHelper;
 
+/**
+ * This contains the pre and post hook setups and helper declarations.
+ * @author Karthick Arunachalam
+ *
+ */
 public class TestSetup {
 	final static Logger log = Logger.getLogger(TestSetup.class);
 	

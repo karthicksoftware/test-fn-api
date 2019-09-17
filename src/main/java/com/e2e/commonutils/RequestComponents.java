@@ -16,6 +16,12 @@ import org.w3c.dom.Document;
 import com.e2e.constants.Constants;
 import com.e2e.constants.HTTPMethod;
 
+/**
+ * This abstarct class provides some default facilities to construct request to the services which extends this.
+ * Also this can be overrided by the consumer service in case of any customized implementation requires.
+ * @author Karthick Arunachalam
+ *
+ */
 public abstract class RequestComponents {
 	final static Logger log = Logger.getLogger(RequestComponents.class);
 

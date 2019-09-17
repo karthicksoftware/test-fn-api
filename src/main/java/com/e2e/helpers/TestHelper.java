@@ -9,6 +9,12 @@ import org.json.simple.parser.JSONParser;
 import com.e2e.services.JSONServer;
 import com.jayway.restassured.response.Response;
 
+/**
+ * A common test helper that used any service reference and assertion helper reference to 
+ * perform helper utilities as per the requirements.
+ * @author Karthick Arunachalam
+ *
+ */
 public class TestHelper {
 
 	final static Logger log = Logger.getLogger(TestHelper.class);

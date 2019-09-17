@@ -4,9 +4,13 @@ import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.testng.Assert;
-
 import com.jayway.restassured.response.Response;
 
+/**
+ * This contains the assertion helpers. Every assert statements should be accessed by this object.
+ * @author Karthick Arunachalam
+ *
+ */
 public class AssertionHelper {
 
 	final static Logger log = Logger.getLogger(AssertionHelper.class);
