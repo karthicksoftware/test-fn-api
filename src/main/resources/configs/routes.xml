@@ -8,9 +8,14 @@
 	<routes>
 		<json-server>
 			<getUser method="GET">/karthicksoftware/test-fn-api/posts?author=${userName}</getUser>
+			<getUserById method="GET">/karthicksoftware/test-fn-api/posts/${id}</getUserById>
 			<getCommentsByPost method="GET">/karthicksoftware/test-fn-api/posts/${postId}/comments</getCommentsByPost>
 			<addCommentToPost method="POST">/karthicksoftware/test-fn-api/posts/${postId}/comments</addCommentToPost>
 			<getAllPosts method="GET">/karthicksoftware/test-fn-api/posts</getAllPosts>
+			<deletePostById method="DELETE">/karthicksoftware/test-fn-api/posts/${id}</deletePostById>
+			<updateTitleById method="PATCH">/karthicksoftware/test-fn-api/posts/${id}</updateTitleById>
+			<getCommentById method="GET">/karthicksoftware/test-fn-api/comments/${id}</getCommentById>
+			<updateEmailById method="PATCH">/karthicksoftware/test-fn-api/comments/${id}</updateEmailById>
 		</json-server>
 	</routes>
 </definition>

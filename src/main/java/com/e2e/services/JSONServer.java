@@ -27,6 +27,22 @@ public class JSONServer extends RequestComponents {
 		HTTPMethod method = getHttpMethod(RouteList.GETUSERS);
 		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, null, null);
 	}
+	
+	public Response getPostsById(int id) throws Exception {
+		Map<String, String> substitutes = new HashMap<String, String>();
+		substitutes.put("id", String.valueOf(id));
+		String serviceUrl = StringSubstitutor(getServiceURL(RouteList.GET_USER_BY_ID), substitutes);
+		HTTPMethod method = getHttpMethod(RouteList.GET_USER_BY_ID);
+		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, null, null);
+	}
+	
+	public Response getCommentsById(int id) throws Exception {
+		Map<String, String> substitutes = new HashMap<String, String>();
+		substitutes.put("id", String.valueOf(id));
+		String serviceUrl = StringSubstitutor(getServiceURL(RouteList.GET_COMMENT_BY_ID), substitutes);
+		HTTPMethod method = getHttpMethod(RouteList.GET_COMMENT_BY_ID);
+		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, null, null);
+	}
 
 	public Response addNewComment(String body, int postId, String email) throws Exception {
 		Map<String, String> substitutes = new HashMap<String, String>();
@@ -53,5 +69,33 @@ public class JSONServer extends RequestComponents {
 		String serviceUrl = getServiceURL(RouteList.GET_ALL_POSTS);
 		HTTPMethod method = getHttpMethod(RouteList.GET_ALL_POSTS);
 		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, null, null);
+	}
+	
+	public Response deletePostById(int id) throws Exception {
+		Map<String, String> substitutes = new HashMap<String, String>();
+		substitutes.put("id", String.valueOf(id));
+		String serviceUrl = StringSubstitutor(getServiceURL(RouteList.DELETE_POST_BY_ID), substitutes);
+		HTTPMethod method = getHttpMethod(RouteList.DELETE_POST_BY_ID);
+		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, null, null);
+	}
+	
+	public Response updateTitleById(int id, String newTitle) throws Exception {
+		Map<String, String> substitutes = new HashMap<String, String>();
+		substitutes.put("title", newTitle);
+		substitutes.put("id", String.valueOf(id));
+		String serviceUrl = StringSubstitutor(getServiceURL(RouteList.UPDATE_TITLE_BY_ID), substitutes);
+		String payload = StringSubstitutor(getRequestBody(PayloadList.UPDATE_TITLE_BY_ID), substitutes);
+		HTTPMethod method = getHttpMethod(RouteList.UPDATE_TITLE_BY_ID);
+		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, null, payload);
+	}
+	
+	public Response updateEmailById(int id, String newTitle) throws Exception {
+		Map<String, String> substitutes = new HashMap<String, String>();
+		substitutes.put("email", newTitle);
+		substitutes.put("id", String.valueOf(id));
+		String serviceUrl = StringSubstitutor(getServiceURL(RouteList.UPDATE_EMAIL_BY_ID), substitutes);
+		String payload = StringSubstitutor(getRequestBody(PayloadList.UPDATE_EMAIL_BY_ID), substitutes);
+		HTTPMethod method = getHttpMethod(RouteList.UPDATE_EMAIL_BY_ID);
+		return request.sendRequest(method, serviceUrl, Headers.CONTENT_TYPE_JSON, null, payload);
 	}
 }

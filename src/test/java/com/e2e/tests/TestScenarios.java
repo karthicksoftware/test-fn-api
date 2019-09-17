@@ -18,7 +18,7 @@ public class TestScenarios extends TestSetup {
 	}
 	
 	@Test
-	public void validateIfRespectiveCommentsRetrievesAsPerPostId() throws Exception {
+	public void checkIfRespectiveCommentsRetrievesAsPerPostId() throws Exception {
 		Response posts = helper.getPostsByUser("Samantha");
 		helper.validateRespectiveCommentsByPostId(posts);
 	}
@@ -27,6 +27,23 @@ public class TestScenarios extends TestSetup {
 	public void checkIfUserAbleToCommentToPost() throws Exception {
 		Response allPosts = helper.getAllPosts();
 		helper.addCommentToAnyPost(allPosts);
+	}
+	
+	@Test
+	public void checkIfUserIsAbleToDeleteThePost() throws Exception {
+		helper.deletePostById(5);
+	}
+	
+	@Test
+	public void checkIfUserIsAbleToModifyPostTitle() throws Exception {
+		Response post = helper.getPostsById(5);
+		helper.validateTitleModification(post, 5, "The Downtown hero");
+	}
+	
+	@Test
+	public void checkIfUserCanUpdateCommentThatHasInvalidEmailId() throws Exception {
+		Response post = helper.getCommentsById(15);
+		helper.validateEmailUpdate(post, 15, "validemail@hotmail.com");
 	}
 }
  

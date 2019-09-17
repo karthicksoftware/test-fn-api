@@ -2,12 +2,10 @@ package com.e2e.helpers;
 
 import java.util.Random;
 import java.util.regex.Pattern;
-
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 import com.e2e.services.JSONServer;
 import com.jayway.restassured.response.Response;
 
@@ -29,6 +27,18 @@ public class TestHelper {
 
 	public Response getPostsByUser(String userName) throws Exception {
 		Response response = jsonService.getPostsByUser(userName.toLowerCase());
+		assertionHelper.assertStatusCode(response.statusCode(), 200);
+		return response;
+	}
+	
+	public Response getPostsById(int id) throws Exception {
+		Response response = jsonService.getPostsById(id);
+		assertionHelper.assertStatusCode(response.statusCode(), 200);
+		return response;
+	}
+	
+	public Response getCommentsById(int id) throws Exception {
+		Response response = jsonService.getCommentsById(id);
 		assertionHelper.assertStatusCode(response.statusCode(), 200);
 		return response;
 	}
@@ -60,11 +70,15 @@ public class TestHelper {
 			return;
 		for (Object eachComments : allComments) {
 			String emailId = getEmailId(eachComments, "email");
-			boolean isValidEmail = Pattern.compile("^[\\w\\d-]{6,30}@[\\w\\d]+\\.[\\w]{3}$").matcher(emailId).matches();
+			boolean isValidEmail = isValidEmail(emailId);
 			assertionHelper.isTrue(isValidEmail,
 					"The Post Id " + String.valueOf(((JSONObject) eachComments).get("postId"))
 							+ " has invalid email in comment section. " + " Email Found -> " + emailId);
 		}
+	}
+	
+	private boolean isValidEmail(String emailId) throws Exception {
+		return Pattern.compile("^[\\w\\d-]{6,30}@[\\w\\d]+\\.[\\w]{3}$").matcher(emailId).matches();
 	}
 
 	private int getPostId(Object eachPost) throws Exception {
@@ -136,7 +150,39 @@ public class TestHelper {
 		expectedResults.add(expectedCommentResponse);
 		Response commentResponse = jsonService.addNewComment(body, randomPost, email);
 		assertionHelper.assertStatusCode(commentResponse.statusCode(), 201);
-		assertionHelper.assertJSON(((JSONArray) new JSONParser().parse(commentResponse.asString())).toJSONString(), expectedResults.toJSONString());
+		assertionHelper.assertJSON((JSONArray) new JSONParser().parse(commentResponse.asString()), expectedResults);
 		return response;
 	}
+	
+	public void deletePostById(int id) throws Exception {
+		Response response = jsonService.deletePostById(id);
+		assertionHelper.assertStatusCode(response.statusCode(), 200);
+		assertionHelper.assertEmptyJson(response);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void validateTitleModification(Response post, int id, String newTitle) throws Exception {
+		Response response = jsonService.updateTitleById(id, newTitle);
+		assertionHelper.assertStatusCode(response.statusCode(), 200);
+		JSONObject expectedResult = new JSONObject();
+		expectedResult = (JSONObject) new JSONParser().parse(post.asString());
+		expectedResult.put("title", newTitle);
+		assertionHelper.assertJSON((JSONObject) new JSONParser().parse(response.asString()), expectedResult);
+	} 
+	
+	@SuppressWarnings("unchecked")
+	public void validateEmailUpdate(Response post, int id, String newEmail) throws Exception {
+		Response response = jsonService.updateEmailById(id, newEmail);
+		assertionHelper.assertStatusCode(response.statusCode(), 200);
+		JSONObject commentsResponse = (JSONObject) new JSONParser().parse(post.asString());
+		String actualEmail = (String) commentsResponse.get("email");
+		JSONObject emailUpdateResponse = (JSONObject) new JSONParser().parse(response.asString());
+		String emailAfterUpdate = (String) emailUpdateResponse.get("email");
+		assertionHelper.isFalse(isValidEmail(actualEmail), "Looks like a valid email. Expected Invalid email.");
+		assertionHelper.isTrue(isValidEmail(emailAfterUpdate), "Looks like again invalid email. Expected valid email.");
+		JSONObject expectedResult = new JSONObject();
+		expectedResult = (JSONObject) new JSONParser().parse(post.asString());
+		expectedResult.put("email", newEmail);
+		assertionHelper.assertJSON((JSONObject) new JSONParser().parse(response.asString()), expectedResult);
+	} 
 }

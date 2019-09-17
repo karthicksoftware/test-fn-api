@@ -47,6 +47,8 @@ public abstract class RequestComponents {
 			return HTTPMethod.POST;
 		else if (methodName.equalsIgnoreCase("delete"))
 			return HTTPMethod.DELETE;
+		else if (methodName.equalsIgnoreCase("patch"))
+			return HTTPMethod.PATCH;
 		else
 			throw new OperationNotSupportedException("Method not supported : " + methodName);
 	}

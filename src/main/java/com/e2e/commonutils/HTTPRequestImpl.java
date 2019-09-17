@@ -49,6 +49,9 @@ public class HTTPRequestImpl implements HTTPRequestFacade{
 		case DELETE:
 			response = sendDeleteRequest(method, requestUrl, contentType, header, jsonBody, cookies);
 			break;
+		case PATCH:
+			response = sendPatchRequest(method, requestUrl, contentType, header, jsonBody, cookies);
+			break;
 		default :
 			throw new InvalidHTTPMethodException("The given method => "+method.name()+ " is not supported.");
 		}
@@ -86,6 +89,14 @@ public class HTTPRequestImpl implements HTTPRequestFacade{
 			return specs.relaxedHTTPSValidation().delete(requestUrl);
 		else
 			return specs.delete(requestUrl);
+	}
+	
+	private Response sendPatchRequest(HTTPMethod method, String requestUrl, String contentType, HashMap<String, Object> header, String jsonBody, HashMap<String, Object> cookies) throws Exception {
+		RequestSpecification specs = constructRequestSpecification(method, requestUrl, contentType, header, jsonBody, cookies);
+		if(requestUrl.startsWith("https"))
+			return specs.relaxedHTTPSValidation().patch(requestUrl);
+		else
+			return specs.patch(requestUrl);
 	}
 	
 	private RequestSpecification constructRequestSpecification(HTTPMethod method, String requestUrl, String contentType, HashMap<String, Object> header, String jsonBody, HashMap<String, Object> cookies) throws Exception {
